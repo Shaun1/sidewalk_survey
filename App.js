@@ -17,7 +17,9 @@ import {
   Picker,
 } from 'react-native';
 
-import { Button } from 'react-native-elements';
+import {Button} from 'react-native-elements';
+
+import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 class PageTemplate extends React.Component {
   render() {
@@ -36,52 +38,71 @@ class PageTemplate extends React.Component {
           </ScrollView>
         </SafeAreaView>
       </React.Fragment>
-    )
+    );
   }
 }
 
 class HomePage extends React.Component {
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <PageTemplate>
         <View style={styles.sectionContainer}>
-          <Button title="New Entry" />
+          <Button
+            title="Add Sidewalk Entry"
+            onPress={() => navigate('NewEntryForm')}
+          />
         </View>
       </PageTemplate>
-    )
+    );
   }
 }
 
 class NewEntryForm extends React.Component {
   state = {
-    address: "",
-    street_face: "",
-    notes: "",
+    address: '',
+    street_face: '',
+    notes: '',
     condition: null,
     material: null,
-    img_srcs: []
-  }
+    img_srcs: [],
+  };
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <PageTemplate>
         <View style={styles.body}>
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Address:</Text>
-            <TextInput style={styles.textInput} />
+            <TextInput
+              style={styles.textInput}
+              value={this.state.address}
+              onChangeText={address => this.setState({address})}
+            />
           </View>
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Street Face:</Text>
-            <TextInput style={styles.textInput} />
+            <TextInput
+              style={styles.textInput}
+              value={this.state.street_face}
+              onChangeText={street_face => this.setState({street_face})}
+            />
           </View>
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Notes:</Text>
-            <TextInput style={styles.textInput} multiline={true} />
+            <TextInput
+              style={styles.textInput}
+              multiline={true}
+              value={this.state.notes}
+              onChangeText={notes => this.setState({notes})}
+            />
           </View>
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Condition:</Text>
             <Picker
+              selectedValue={this.state.condition}
               onValueChange={(itemValue, itemIndex) =>
-                this.setState({ language: itemValue })
+                this.setState({condition: itemValue})
               }>
               <Picker.Item label="Good - Meets ADA Standards" value="good" />
               <Picker.Item label="Fair - " value="fair" />
@@ -92,8 +113,9 @@ class NewEntryForm extends React.Component {
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Material:</Text>
             <Picker
+              selectedValue={this.state.material}
               onValueChange={(itemValue, itemIndex) =>
-                this.setState({ language: itemValue })
+                this.setState({material: itemValue})
               }>
               <Picker.Item label="Concrete" value="concrete" />
               <Picker.Item label="Brick" value="brick" />
@@ -103,17 +125,23 @@ class NewEntryForm extends React.Component {
             <Button title="Add Photo" />
           </View>
           <View style={styles.sectionContainer}>
-            <Button title="Submit" />
+            <Button title="Submit" onPress={() => navigate('HomePage')} />
+          </View>
+          <View>
+            <Text>{JSON.stringify(this.state, null, 2)}</Text>
           </View>
         </View>
       </PageTemplate>
-    )
+    );
   }
 }
 
-const App = () => {
-  return (<HomePage />);
-};
+const MainNavigator = createStackNavigator({
+  HomePage: {screen: HomePage},
+  NewEntryForm: {screen: NewEntryForm},
+});
+
+const App = createAppContainer(MainNavigator);
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -138,7 +166,7 @@ const styles = StyleSheet.create({
   textInput: {
     height: 40,
     borderColor: 'gray',
-    borderWidth: 1
+    borderWidth: 1,
   },
   footer: {
     color: 'steelblue',
