@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -25,6 +25,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+class sidewalkEntry extends Component 
 const App = () => {
   return (
     <Fragment>
@@ -53,25 +54,25 @@ const App = () => {
             </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Condition:</Text>
-                <Picker
+              <Picker
                 onValueChange={(itemValue, itemIndex) =>
-                  this.setState({language: itemValue})
+                  this.setState({ language: itemValue })
                 }>
-                  <Picker.Item label="Good - Meets ADA Standards" value="good" />
-                  <Picker.Item label="Fair - " value="fair" />
-                  <Picker.Item label="Poor - " value="poor" />
-                  <Picker.Item label="Missing - No Sidewalk" value="missing" />
-                </Picker>
+                <Picker.Item label="Good - Meets ADA Standards" value="good" />
+                <Picker.Item label="Fair - " value="fair" />
+                <Picker.Item label="Poor - " value="poor" />
+                <Picker.Item label="Missing - No Sidewalk" value="missing" />
+              </Picker>
             </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Material:</Text>
-              <Picker 
+              <Picker
                 onValueChange={(itemValue, itemIndex) =>
-                  this.setState({language: itemValue})
+                  this.setState({ language: itemValue })
                 }>
-                  <Picker.Item label="Concrete" value="concrete" />
-                  <Picker.Item label="Brick" value="brick" />
-                </Picker>
+                <Picker.Item label="Concrete" value="concrete" />
+                <Picker.Item label="Brick" value="brick" />
+              </Picker>
             </View>
             <View style={styles.sectionContainer}>
               <Button title="Add Photo" />
