@@ -15,11 +15,14 @@ import {
   Text,
   TextInput,
   Picker,
+  Image,
 } from 'react-native';
 
 import {Button} from 'react-native-elements';
 
 import {createStackNavigator, createAppContainer} from 'react-navigation';
+
+import ImagePicker from 'react-native-image-picker';
 
 class PageTemplate extends React.Component {
   render() {
@@ -65,8 +68,9 @@ class NewEntryForm extends React.Component {
     notes: '',
     condition: null,
     material: null,
-    img_srcs: [],
+    photos: [],
   };
+
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -122,7 +126,30 @@ class NewEntryForm extends React.Component {
             </Picker>
           </View>
           <View style={styles.sectionContainer}>
-            <Button title="Add Photo" />
+            <Button
+              title="Add Photo"
+              onPress={() => {
+                const options = {noData: true};
+                ImagePicker.launchImageLibrary(options, response => {
+                  console.log('response', response);
+                  if (response.uri) {
+                    var photos = this.state.photos.concat(response);
+                    this.setState({photos: photos});
+                  }
+                });
+              }}
+            />
+          </View>
+          <View>
+            {this.state.photos.map((photo, _) => {
+              return (
+                <Image
+                  source={{uri: photo.uri}}
+                  style={{width: 200, height: 200}}
+                  key={photo.uri}
+                />
+              );
+            })}
           </View>
           <View style={styles.sectionContainer}>
             <Button title="Submit" onPress={() => navigate('HomePage')} />
