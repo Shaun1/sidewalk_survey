@@ -130,7 +130,7 @@ class NewEntryForm extends React.Component {
               title="Add Photo"
               onPress={() => {
                 const options = {noData: true};
-                ImagePicker.launchImageLibrary(options, response => {
+                ImagePicker.showImagePicker(options, response => {
                   console.log('response', response);
                   if (response.uri) {
                     var photos = this.state.photos.concat(response);
