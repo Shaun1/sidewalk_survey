@@ -6,6 +6,8 @@
  * @flow
  */
 
+GLOBAL = require('./globals');
+
 import React from 'react';
 import {
   SafeAreaView,
@@ -45,6 +47,39 @@ class PageTemplate extends React.Component {
   }
 }
 
+class SigninPage extends React.Component {
+  state = {
+    session: '',
+  };
+  render() {
+    const {navigate} = this.props.navigation;
+    return (
+      <PageTemplate>
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionTitle}>Session:</Text>
+          <TextInput
+            style={styles.textInput}
+            value={this.state.session}
+            onChangeText={session => this.setState({session})}
+          />
+        </View>
+        <View style={styles.sectionContainer}>
+          <Button
+            title="Enter"
+            onPress={() => {
+              GLOBAL.SESSION = this.state.session;
+              return navigate('HomePage');
+            }}
+          />
+        </View>
+        <View>
+          <Text>{JSON.stringify(GLOBAL, null, 2)}</Text>
+        </View>
+      </PageTemplate>
+    );
+  }
+}
+
 class HomePage extends React.Component {
   render() {
     const {navigate} = this.props.navigation;
@@ -55,6 +90,9 @@ class HomePage extends React.Component {
             title="Add Sidewalk Entry"
             onPress={() => navigate('NewEntryForm')}
           />
+        </View>
+        <View>
+          <Text>{JSON.stringify(GLOBAL, null, 2)}</Text>
         </View>
       </PageTemplate>
     );
@@ -155,6 +193,9 @@ class NewEntryForm extends React.Component {
             <Button title="Submit" onPress={() => navigate('HomePage')} />
           </View>
           <View>
+            <Text>{JSON.stringify(GLOBAL, null, 2)}</Text>
+          </View>
+          <View>
             <Text>{JSON.stringify(this.state, null, 2)}</Text>
           </View>
         </View>
@@ -164,6 +205,7 @@ class NewEntryForm extends React.Component {
 }
 
 const MainNavigator = createStackNavigator({
+  SigninPage: {screen: SigninPage},
   HomePage: {screen: HomePage},
   NewEntryForm: {screen: NewEntryForm},
 });
