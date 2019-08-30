@@ -52,8 +52,8 @@ export class EntryScreen extends React.Component {
               this.setState({condition: itemValue})
             }>
             <Picker.Item label="Good - Meets ADA Standards" value="good" />
-            <Picker.Item label="Fair - " value="fair" />
-            <Picker.Item label="Poor - " value="poor" />
+            <Picker.Item label="Fair - Useable by able-bodied adults" value="fair" />
+            <Picker.Item label="Poor - Severely damaged or difficult to traverse even for able-bodied adults" value="poor" />
             <Picker.Item label="Missing - No Sidewalk" value="missing" />
           </Picker>
         </View>

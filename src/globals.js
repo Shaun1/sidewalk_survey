@@ -1,1 +1,1 @@
-module.exports = {campaign_code: '', user: '', app_version: '0.0.0'};
+module.exports = { app_version: '0.0.0', campaign_code: '', user: '',};

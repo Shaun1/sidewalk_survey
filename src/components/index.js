@@ -49,12 +49,32 @@ export function BasicButton(props) {
   );
 }
 
+// ListPicker presents a selection where the user can pick one option
+// TODO: finish implementing this
+export function ListPicker(props) {
+  return (
+    <View style={styles.sectionContainer}>
+    <Text style={styles.sectionTitle}>{props.title}</Text>
+    <Picker
+      selectedValue={this.state.condition}
+      onValueChange={props.onValueChange}>
+      <Picker.Item
+        key={props.items[0].value}
+        label={props.items[0].label}
+        value={props.items[0].value} 
+        />
+    </Picker>
+    </View>
+  )
+}
+
+
 // Debug prints an object for debugging
 export function Debug(props) {
   return (
     <View>
-      <Text style={styles.sectionTitle}>{props.title}</Text>
-      <Text>{JSON.stringify(props.data, null, 2)}</Text>
+      <Text style={styles.debugHeading}>{props.title}</Text>
+      <Text style={styles.debug}>{JSON.stringify(props.data, null, 2)}</Text>
     </View>
   );
 }

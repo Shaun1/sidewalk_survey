@@ -33,4 +33,13 @@ export const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
+  debug: {
+    color: 'orangered',
+    fontSize: 12,
+  },
+  debugHeading: {
+    color: 'orangered',
+    fontSize: 14,
+    fontWeight: '600',
+  },
 });
