@@ -1,18 +1,12 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: 'white',
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
   body: {
     backgroundColor: 'white',
   },
   sectionContainer: {
-    marginTop: 32,
+    marginTop: 16,
+    marginBottom: 16,
     paddingHorizontal: 24,
   },
   sectionTitle: {
@@ -22,16 +16,14 @@ export const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: 'black',
     borderWidth: 1,
   },
-  footer: {
-    color: 'steelblue',
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+  image: {
+    marginTop: 8,
+    marginBottom: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   debug: {
     color: 'orangered',

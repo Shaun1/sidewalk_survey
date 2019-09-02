@@ -2,19 +2,23 @@
 
 import React from 'react';
 
-import {ScreenTemplate, Debug, BasicButton} from '../components';
+import {Text} from 'react-native';
+
+import {StaticView, Debug, BasicButton, TextBox} from '../components';
 
 export class HomeScreen extends React.Component {
   render() {
     const {navigate} = this.props.navigation;
     return (
-      <ScreenTemplate>
+      <StaticView>
+        <Text>{'User: ' + GLOBALS.user}</Text>
+        <Text>{'Campaign: ' + GLOBALS.campaign_code}</Text>
         <BasicButton
           title="Add Sidewalk Entry"
           onPress={() => navigate('EntryScreen')}
         />
         <Debug title="globals" data={GLOBALS} />
-      </ScreenTemplate>
+      </StaticView>
     );
   }
 }

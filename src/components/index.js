@@ -13,19 +13,27 @@ import {Button} from 'react-native-elements';
 import {styles} from '../styles';
 
 // ScreenTemplate wraps an entire screen.
-export class ScreenTemplate extends React.Component {
+export class StaticView extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <SafeAreaView>
+          <View style={styles.body}>{this.props.children}</View>
+        </SafeAreaView>
+      </React.Fragment>
+    );
+  }
+}
+
+// Scroller lets you scroll through a menu
+export class ScrollerView extends React.Component {
   render() {
     return (
       <React.Fragment>
         <SafeAreaView>
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}>
-            {global.HermesInternal == null ? null : (
-              <View style={styles.engine}>
-                <Text style={styles.footer}>Engine: Hermes</Text>
-              </View>
-            )}
+            style={styles.body}>
             {this.props.children}
           </ScrollView>
         </SafeAreaView>
@@ -83,11 +91,13 @@ export function PhotoGallery(props) {
     <View>
       {props.photos.map((photo, _) => {
         return (
-          <Image
-            source={{uri: photo.uri}}
-            style={{width: 200, height: 200}}
-            key={photo.uri}
-          />
+          <View style={styles.image} key={photo.uri}>
+            <Image
+              source={{uri: photo.uri}}
+              style={{width: 200, height: 200, alignContent: 'center'}}
+              key={photo.uri}
+            />
+          </View>
         );
       })}
     </View>

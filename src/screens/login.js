@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import {ScreenTemplate, TextBox, Debug, BasicButton} from '../components';
+import {StaticView, TextBox, Debug, BasicButton} from '../components';
 
 export class LoginScreen extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export class LoginScreen extends React.Component {
   render() {
     const {navigate} = this.props.navigation;
     return (
-      <ScreenTemplate>
+      <StaticView>
         <TextBox
           title="Campaign Code:"
           onChangeText={campaign_code => this.setState({campaign_code})}
@@ -34,7 +34,7 @@ export class LoginScreen extends React.Component {
         />
         <Debug title="globals" data={GLOBALS} />
         <Debug title="state" data={this.state} />
-      </ScreenTemplate>
+      </StaticView>
     );
   }
 }

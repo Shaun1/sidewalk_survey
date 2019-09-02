@@ -3,7 +3,7 @@
 import React from 'react';
 
 import {
-  ScreenTemplate,
+  ScrollerView,
   TextBox,
   Debug,
   BasicButton,
@@ -32,7 +32,7 @@ export class EntryScreen extends React.Component {
   render() {
     const {navigate} = this.props.navigation;
     return (
-      <ScreenTemplate>
+      <ScrollerView>
         <TextBox
           title="Address:"
           value={this.state.address}
@@ -103,7 +103,7 @@ export class EntryScreen extends React.Component {
         <BasicButton title="Submit" onPress={() => navigate('HomeScreen')} />
         <Debug title="globals" data={GLOBALS} />
         <Debug title="state" data={this.state} />
-      </ScreenTemplate>
+      </ScrollerView>
     );
   }
 }
