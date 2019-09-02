@@ -100,7 +100,7 @@ export class EntryScreen extends React.Component {
           }}
         />
         <PhotoGallery photos={this.state.photos} />
-        <BasicButton title="Submit" onPress={() => navigate('HomePage')} />
+        <BasicButton title="Submit" onPress={() => navigate('HomeScreen')} />
         <Debug title="globals" data={GLOBALS} />
         <Debug title="state" data={this.state} />
       </ScreenTemplate>
