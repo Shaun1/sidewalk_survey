@@ -1,5 +1,13 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, View, Text, TextInput} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  Picker,
+  Image,
+} from 'react-native';
 import {Button} from 'react-native-elements';
 
 import {styles} from '../styles';
@@ -50,24 +58,41 @@ export function BasicButton(props) {
 }
 
 // ListPicker presents a selection where the user can pick one option
-// TODO: finish implementing this
 export function ListPicker(props) {
   return (
     <View style={styles.sectionContainer}>
-    <Text style={styles.sectionTitle}>{props.title}</Text>
-    <Picker
-      selectedValue={this.state.condition}
-      onValueChange={props.onValueChange}>
-      <Picker.Item
-        key={props.items[0].value}
-        label={props.items[0].label}
-        value={props.items[0].value} 
-        />
-    </Picker>
+      <Text style={styles.sectionTitle}>{props.title}</Text>
+      <Picker selectedValue={props.value} onValueChange={props.onValueChange}>
+        {props.choices.map((choice, idx) => {
+          return (
+            <Picker.Item
+              key={choice.value}
+              label={choice.label}
+              value={choice.value}
+            />
+          );
+        })}
+      </Picker>
     </View>
-  )
+  );
 }
 
+// PhotoGallery displays a set of photos
+export function PhotoGallery(props) {
+  return (
+    <View>
+      {props.photos.map((photo, _) => {
+        return (
+          <Image
+            source={{uri: photo.uri}}
+            style={{width: 200, height: 200}}
+            key={photo.uri}
+          />
+        );
+      })}
+    </View>
+  );
+}
 
 // Debug prints an object for debugging
 export function Debug(props) {

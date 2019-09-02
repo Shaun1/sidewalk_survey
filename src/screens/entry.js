@@ -2,12 +2,16 @@
 
 import React from 'react';
 
-import {ScreenTemplate, TextBox, Debug, BasicButton} from '../components';
+import {
+  ScreenTemplate,
+  TextBox,
+  Debug,
+  BasicButton,
+  ListPicker,
+  PhotoGallery,
+} from '../components';
 
-import {View, Text, Picker, Image} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
-
-import {styles} from '../styles';
 
 export class EntryScreen extends React.Component {
   constructor(props) {
@@ -44,30 +48,44 @@ export class EntryScreen extends React.Component {
           value={this.state.notes}
           onChangeText={notes => this.setState({notes})}
         />
-        <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>Condition:</Text>
-          <Picker
-            selectedValue={this.state.condition}
-            onValueChange={(itemValue, itemIndex) =>
-              this.setState({condition: itemValue})
-            }>
-            <Picker.Item label="Good - Meets ADA Standards" value="good" />
-            <Picker.Item label="Fair - Useable by able-bodied adults" value="fair" />
-            <Picker.Item label="Poor - Severely damaged or difficult to traverse even for able-bodied adults" value="poor" />
-            <Picker.Item label="Missing - No Sidewalk" value="missing" />
-          </Picker>
-        </View>
-        <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>Material:</Text>
-          <Picker
-            selectedValue={this.state.material}
-            onValueChange={(itemValue, itemIndex) =>
-              this.setState({material: itemValue})
-            }>
-            <Picker.Item label="Concrete" value="concrete" />
-            <Picker.Item label="Brick" value="brick" />
-          </Picker>
-        </View>
+        <ListPicker
+          title="Condition:"
+          value={this.state.condition}
+          onValueChange={(val, _) => this.setState({condition: val})}
+          choices={[
+            {
+              label: 'Good - Meets ADA Standards',
+              value: 'good',
+            },
+            {
+              label: 'Fair - Useable by able-bodied adults',
+              value: 'fair',
+            },
+            {
+              label: 'Poor - Severely damaged or difficult to traverse',
+              value: 'poor',
+            },
+            {
+              label: 'Missing - No Sidewalk',
+              value: 'missingg',
+            },
+          ]}
+        />
+        <ListPicker
+          title="Material:"
+          value={this.state.material}
+          onValueChange={(val, _) => this.setState({material: val})}
+          choices={[
+            {
+              label: 'Concrete',
+              value: 'concrete',
+            },
+            {
+              label: 'Brick',
+              value: 'brick',
+            },
+          ]}
+        />
         <BasicButton
           title="Add Photo"
           onPress={() => {
@@ -81,17 +99,7 @@ export class EntryScreen extends React.Component {
             });
           }}
         />
-        <View>
-          {this.state.photos.map((photo, _) => {
-            return (
-              <Image
-                source={{uri: photo.uri}}
-                style={{width: 200, height: 200}}
-                key={photo.uri}
-              />
-            );
-          })}
-        </View>
+        <PhotoGallery photos={this.state.photos} />
         <BasicButton title="Submit" onPress={() => navigate('HomePage')} />
         <Debug title="globals" data={GLOBALS} />
         <Debug title="state" data={this.state} />
