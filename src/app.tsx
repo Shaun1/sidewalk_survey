@@ -6,7 +6,7 @@
  * @flow
  */
 
-GLOBALS = require('./globals');
+var GLOBALS = require('./globals');
 
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
