@@ -1,6 +1,6 @@
 // EntryScreen is where a user enters information about the sidewalks on a property face.
 
-import React from 'react';
+import * as React from 'react';
 
 import {
   ScrollerView,

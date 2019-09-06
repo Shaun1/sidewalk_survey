@@ -1,6 +1,6 @@
 // LoginScreen is the initial login screen that a user sees after the app loads.
 
-import React from 'react';
+import * as React from 'react';
 
 import {StaticView, TextBox, Debug, BasicButton} from '../components';
 
