@@ -4,8 +4,8 @@ import React from 'react';
 
 import {StaticView, TextBox, Debug, BasicButton} from '../components';
 
-export class LoginScreen extends React.Component {
-  constructor(props) {
+export class LoginScreen extends React.Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {
       campaign_code: '',
@@ -18,11 +18,11 @@ export class LoginScreen extends React.Component {
       <StaticView>
         <TextBox
           title="Campaign Code:"
-          onChangeText={campaign_code => this.setState({campaign_code})}
+          onChangeText={(campaign_code: string) => this.setState({campaign_code})}
         />
         <TextBox
           title="Your Name:"
-          onChangeText={user => this.setState({user})}
+          onChangeText={(user: string) => this.setState({user})}
         />
         <BasicButton
           title="Enter"

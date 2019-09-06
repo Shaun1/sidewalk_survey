@@ -13,8 +13,8 @@ import {
 
 import ImagePicker from 'react-native-image-picker';
 
-export class EntryScreen extends React.Component {
-  constructor(props) {
+export class EntryScreen extends React.Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {
       app_version: GLOBALS.app_version,
@@ -36,22 +36,22 @@ export class EntryScreen extends React.Component {
         <TextBox
           title="Address:"
           value={this.state.address}
-          onChangeText={address => this.setState({address})}
+          onChangeText={(address: string) => this.setState({address})}
         />
         <TextBox
           title="Street Face:"
           value={this.state.street_face}
-          onChangeText={street_face => this.setState({street_face})}
+          onChangeText={(street_face: string) => this.setState({street_face})}
         />
         <TextBox
           title="Notes:"
           value={this.state.notes}
-          onChangeText={notes => this.setState({notes})}
+          onChangeText={(notes: string) => this.setState({notes})}
         />
         <ListPicker
           title="Condition:"
           value={this.state.condition}
-          onValueChange={(val, _) => this.setState({condition: val})}
+          onValueChange={(val: string, _: number) => this.setState({condition: val})}
           choices={[
             {
               label: 'Good - Meets ADA Standards',
@@ -74,7 +74,7 @@ export class EntryScreen extends React.Component {
         <ListPicker
           title="Material:"
           value={this.state.material}
-          onValueChange={(val, _) => this.setState({material: val})}
+          onValueChange={(val: string, _: number) => this.setState({material: val})}
           choices={[
             {
               label: 'Concrete',

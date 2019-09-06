@@ -6,7 +6,7 @@ import {Text} from 'react-native';
 
 import {StaticView, Debug, BasicButton, TextBox} from '../components';
 
-export class HomeScreen extends React.Component {
+export class HomeScreen extends React.Component<any, any> {
   render() {
     const {navigate} = this.props.navigation;
     return (

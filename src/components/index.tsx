@@ -13,7 +13,7 @@ import {Button} from 'react-native-elements';
 import {styles} from '../styles';
 
 // ScreenTemplate wraps an entire screen.
-export class StaticView extends React.Component {
+export class StaticView extends React.Component<any, any> {
   render() {
     return (
       <React.Fragment>
@@ -26,7 +26,7 @@ export class StaticView extends React.Component {
 }
 
 // Scroller lets you scroll through a menu
-export class ScrollerView extends React.Component {
+export class ScrollerView extends React.Component<any, any> {
   render() {
     return (
       <React.Fragment>
@@ -43,7 +43,7 @@ export class ScrollerView extends React.Component {
 }
 
 // TextBox is a standard text input box.
-export function TextBox(props) {
+export function TextBox(props: any) {
   return (
     <View style={styles.sectionContainer}>
       <Text style={styles.sectionTitle}>{props.title}</Text>
@@ -57,7 +57,7 @@ export function TextBox(props) {
 }
 
 // BasicButton is a basic button.
-export function BasicButton(props) {
+export function BasicButton(props: any) {
   return (
     <View style={styles.sectionContainer}>
       <Button title={props.title} onPress={props.onPress} />
@@ -65,13 +65,17 @@ export function BasicButton(props) {
   );
 }
 
+interface ChoiceType {
+  value: string;
+  label: string;
+}
 // ListPicker presents a selection where the user can pick one option
-export function ListPicker(props) {
+export function ListPicker(props: any) {
   return (
     <View style={styles.sectionContainer}>
       <Text style={styles.sectionTitle}>{props.title}</Text>
       <Picker selectedValue={props.value} onValueChange={props.onValueChange}>
-        {props.choices.map((choice, idx) => {
+        {props.choices.map((choice: ChoiceType, _: number) => {
           return (
             <Picker.Item
               key={choice.value}
@@ -85,11 +89,15 @@ export function ListPicker(props) {
   );
 }
 
+interface PhotoType {
+  uri: string;
+}
+
 // PhotoGallery displays a set of photos
-export function PhotoGallery(props) {
+export function PhotoGallery(props: any) {
   return (
     <View>
-      {props.photos.map((photo, _) => {
+      {props.photos.map((photo: PhotoType, _: number) => {
         return (
           <View style={styles.image} key={photo.uri}>
             <Image
@@ -105,7 +113,7 @@ export function PhotoGallery(props) {
 }
 
 // Debug prints an object for debugging
-export function Debug(props) {
+export function Debug(props: any) {
   return (
     <View>
       <Text style={styles.debugHeading}>{props.title}</Text>
